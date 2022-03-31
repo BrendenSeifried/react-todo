@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { getUser } from './services/fetchutils'; 
 import { useState } from 'react';
 import Auth from './views/Auth/Auth';
+import Header from './components/Header';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <Switch>
           <Route exact path = '/'>
             {currentUser ? <Home /> : <Redirect to='/auth'/>}
