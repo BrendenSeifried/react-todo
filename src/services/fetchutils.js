@@ -6,6 +6,31 @@ export async function fetchToDo() {
 }
 
 
+export async function createTodo(item) {
+  const resp = await client.from('todos').insert(item);
+  return checkError(resp);
+}
+
+
+
+export async function changeToDo(done){
+  const resp = await client.from('todos').update(done).match({ id: done.id }).single();
+  return checkError(resp);
+}
+
+
+
+
+
+
+// export async function change2(id) {
+//   const resp = await client.from('todos').match({ id }).single();
+//   return checkError(resp);
+// }
+
+
+
+
 export function getUser() {
   return client.auth.session() && client.auth.session().user.email;
 }

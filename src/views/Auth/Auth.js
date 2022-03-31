@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { signInUser, signUpUser } from '../../services/fetchutils';
+import './Auth.css';
 
 export default function Authorize({ setCurrentUser }) {
   const [email, setEmail] = useState('');
@@ -24,7 +25,6 @@ export default function Authorize({ setCurrentUser }) {
         setCurrentUser(data.email);
         history.push('/');
       }
-      
     } catch (e){
       setError(e.message);
     }

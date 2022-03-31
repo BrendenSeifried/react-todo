@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchToDo } from '../../services/fetchutils';
+import { changeToDo, createTodo, fetchToDo } from '../../services/fetchutils';
+import './Home.css';
 
 export default function Home() {
   const [todo, setToDo] = useState([]);
-  
+  const [error, setError] = useState('');
+  const [description, setDescription] = useState('');
+  const [complete, setComplete] = useState(false);
 
   useEffect(()=> {
     const grabToDo = async () => {
@@ -13,13 +16,37 @@ export default function Home() {
     grabToDo();
   }, []);
 
+  const submitToDo = async () => {
+    try {
+      await createTodo({ description });
+      history.push('/');
+    } catch (e) {
+      setError('you broke it');
+    }
+  };
+
+  const setToTrue = async (data) => {
+    try {
+      await changeToDo({ ...data, complete: true });
+      history.push('/');
+      console.log('click');
+    } catch (e) {
+      setError('tisk tisk you broke it');
+    }
+  };
+
   return (
     <div> Home
+      {error && <p>{error}</p>}
       <div>
+        <label className='bio'> Background:
+          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
+        </label>
+        <button onClick={submitToDo}>Submit</button>
       </div>
       {todo.map ((data) =>(
         <div key={data.id}>
-          <h1>{data.description}</h1>
+          <h1 className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
         </div>
       ))}
     </div>
