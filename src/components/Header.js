@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { logout } from '../services/fetchutils';
 
 export default function Header({ currentUser, setCurrentUser }) {
@@ -8,16 +7,13 @@ export default function Header({ currentUser, setCurrentUser }) {
     setCurrentUser('');
   };
   return (
-    <div> Header
-      <div onClick={handleLogout}>
-        <button>logout</button>
-      </div>
+    <div> 
+     
       {currentUser && 
         <>
-          <NavLink className='nav' exact to = '/'>
-            <h1>Admin Page</h1>
-          </NavLink>
-      
+          <div onClick={handleLogout}>
+            <button>logout</button>
+          </div>
           
         </>
       }
