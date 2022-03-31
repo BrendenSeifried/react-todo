@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { signInUser } from '../../services/fetchutils';
+import { signInUser, signUpUser } from '../../services/fetchutils';
 
 export default function Authorize({ setCurrentUser }) {
   const [email, setEmail] = useState('');
@@ -8,12 +8,23 @@ export default function Authorize({ setCurrentUser }) {
   const [error, setError] = useState('');
   const history = useHistory();
 
+  const [check, setCheck] = useState('sign-up');
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await signInUser(email, password);
-      setCurrentUser(data.email);
-      history.push('/');
+
+      if (check === 'sign-in') {
+        const data = await signInUser(email, password);
+        setCurrentUser(data.email);
+        history.push('/');
+      } else {
+        const data = await signUpUser(email, password);
+        setCurrentUser(data.email);
+        history.push('/');
+      }
+      
     } catch (e){
       setError(e.message);
     }
@@ -21,7 +32,14 @@ export default function Authorize({ setCurrentUser }) {
 
   return (
     <div>Authorize
-      <h1>Sign into account</h1>
+      <div>
+        
+        <h1 className={check === 'sign-in' ? 'active' : ''} onClick={() => setCheck('sign-in')}> Sign in </h1>
+
+        <h1 className={check === 'sign-up' ? 'active' : ''} onClick={() => setCheck('sign-up')}> Sign up </h1>
+        
+      </div>
+
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>Email:
@@ -30,8 +48,9 @@ export default function Authorize({ setCurrentUser }) {
 
         <label>Password:
           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-
         </label>
+
+
         <button>Submit</button>
 
       </form>

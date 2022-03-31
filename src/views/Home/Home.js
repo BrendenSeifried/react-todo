@@ -3,6 +3,7 @@ import { fetchToDo } from '../../services/fetchutils';
 
 export default function Home() {
   const [todo, setToDo] = useState([]);
+  
 
   useEffect(()=> {
     const grabToDo = async () => {
@@ -14,10 +15,11 @@ export default function Home() {
 
   return (
     <div> Home
+      <div>
+      </div>
       {todo.map ((data) =>(
         <div key={data.id}>
           <h1>{data.description}</h1>
-            
         </div>
       ))}
     </div>
