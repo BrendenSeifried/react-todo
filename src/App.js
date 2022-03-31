@@ -1,15 +1,25 @@
 import './App.css';
 import Home from './views/Home/Home';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { getUser } from './services/fetchutils'; 
+import { useState } from 'react';
+import Auth from './views/Auth/Auth';
 
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(getUser());
   return (
     <BrowserRouter>
       <div className="App">
-        <Route exact path = '/'>
-          <Home />
-        </Route>
+        <Switch>
+          <Route exact path = '/'>
+            {currentUser ? <Home /> : <Redirect to='/auth'/>}
+          </Route>
+
+          <Route exact path = '/auth'>
+            <Auth setCurrentUser={setCurrentUser}/>
+          </Route>
+        </Switch>
       </div>
     </BrowserRouter>
   );
