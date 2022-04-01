@@ -23,7 +23,7 @@ export default function Home() {
   const submitToDo = async () => {
     try {
       await createTodo({ description });
-      history.push('/');
+      history.go(0);
     } catch (e) {
       setError('you broke it');
     }
@@ -32,7 +32,7 @@ export default function Home() {
   const setToTrue = async (data) => {
     try {
       await changeToDo({ ...data, complete: true });
-      history.push('/');
+      history.go(0);
       console.log('click');
     } catch (e) {
       setError('tisk tisk you broke it');
