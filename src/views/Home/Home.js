@@ -30,7 +30,6 @@ export default function Home() {
     try {
       await changeToDo({ ...data, complete: true });
       history.go(0);
-      console.log('click');
     } catch (e) {
       setError('tisk tisk you broke it');
     }
