@@ -20,15 +20,7 @@ export async function changeToDo(done){
 
 
 
-
-
-
-// export async function change2(id) {
-//   const resp = await client.from('todos').match({ id }).single();
-//   return checkError(resp);
-// }
-
-
+////////Sign in and sign out functions for users///////////
 
 
 export function getUser() {
@@ -55,3 +47,4 @@ export async function logout() {
   const response = await client.auth.signOut();
   return checkError(response);
 }
+
