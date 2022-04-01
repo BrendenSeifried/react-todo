@@ -7,7 +7,7 @@ export async function fetchToDo() {
 
 
 export async function createTodo(item) {
-  const resp = await client.from('todos').insert(item);
+  const resp = await client.from('todos').insert(item).single();
   return checkError(resp);
 }
 
@@ -17,6 +17,11 @@ export async function changeToDo(done){
   return checkError(resp);
 }
 
+
+export async function deleteToDo(id) {
+  const resp = await client.from('todos').delete().match({ id }).single();
+  return checkError(resp);
+}
 
 ////////Sign in and sign out functions for users///////////
 

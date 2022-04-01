@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { changeToDo, createTodo, fetchToDo } from '../../services/fetchutils';
+import { changeToDo, createTodo, deleteToDo, fetchToDo } from '../../services/fetchutils';
 import './Home.css';
-import { useHistory } from 'react-router-dom';
+
 
 export default function Home() {
   const [todo, setToDo] = useState([]);
   const [error, setError] = useState('');
   const [description, setDescription] = useState('');
-  const history = useHistory('');
+ 
 
   useEffect(()=> {
     const grabToDo = async () => {
@@ -18,9 +18,11 @@ export default function Home() {
   }, []);
 
   const submitToDo = async () => {
+   
     try {
-      await createTodo({ description });
-      history.go(0);
+      const data = await createTodo({ description });
+      setToDo((prevState) => [...prevState, data]);
+      
     } catch (e) {
       setError('you broke it');
     }
@@ -28,12 +30,17 @@ export default function Home() {
 
   const setToTrue = async (data) => {
     try {
-      await changeToDo({ ...data, complete: true });
-      history.go(0);
+      const caugh = await changeToDo({ ...data, complete: true });
+  
     } catch (e) {
       setError('tisk tisk you broke it');
     }
   };
+
+  // const takeAway = async () => {
+  //   await deleteToDo(id); 
+  //   history.push(`/`);
+  // };
 
   return (
     <div>
