@@ -12,7 +12,6 @@ export async function createTodo(item) {
 }
 
 
-
 export async function changeToDo(done){
   const resp = await client.from('todos').update(done).match({ id: done.id }).single();
   return checkError(resp);

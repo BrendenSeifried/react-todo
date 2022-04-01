@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { changeToDo, createTodo, deleteToDo, fetchToDo } from '../../services/fetchutils';
+import { changeToDo, createTodo, fetchToDo } from '../../services/fetchutils';
 import './Home.css';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function Home() {
   const [todo, setToDo] = useState([]);
   const [error, setError] = useState('');
   const [description, setDescription] = useState('');
-  // const [complete, setComplete] = useState(false);
-  const params = useParams();
-  const id = params.id;
   const history = useHistory('');
 
   useEffect(()=> {
@@ -51,7 +48,6 @@ export default function Home() {
       {todo.map ((data) =>(
         <div key={data.id}>
           <h1 className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
-         
         </div>
       ))}
     </div>

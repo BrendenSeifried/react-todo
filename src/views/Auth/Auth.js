@@ -11,7 +11,6 @@ export default function Authorize({ setCurrentUser }) {
 
   const [check, setCheck] = useState('sign-up');
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -37,9 +36,8 @@ export default function Authorize({ setCurrentUser }) {
         <h1 className={check === 'sign-in' ? 'active' : 'blank'} onClick={() => setCheck('sign-in')}> Sign in </h1>
 
         <h1 className={check === 'sign-up' ? 'active' : 'blank'} onClick={() => setCheck('sign-up')}> Sign up </h1>
-        
-      </div>
 
+      </div>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label >Email:
@@ -49,13 +47,8 @@ export default function Authorize({ setCurrentUser }) {
         <label >Password:
           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
         </label>
-
-
         <button>Submit</button>
-
       </form>
-
-
     </div>
   );
 }
