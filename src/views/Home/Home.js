@@ -39,7 +39,7 @@ export default function Home() {
     <div>
       {error && <p>{error}</p>}
       <div>
-        <label className='bio'> Background:
+        <label className='bio'> Type a Todo:
           <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
         </label>
         <button onClick={submitToDo}>Submit</button>
