@@ -1,3 +1,14 @@
 .active{
     color: red;
 }
+
+.txt{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.blank {
+   padding: 0px 50px;
+  
+}

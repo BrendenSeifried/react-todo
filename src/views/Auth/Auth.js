@@ -31,22 +31,22 @@ export default function Authorize({ setCurrentUser }) {
   };
 
   return (
-    <div>Authorize
-      <div>
+    <div>
+      <div className='txt'>
         
-        <h1 className={check === 'sign-in' ? 'active' : ''} onClick={() => setCheck('sign-in')}> Sign in </h1>
+        <h1 className={check === 'sign-in' ? 'active' : 'blank'} onClick={() => setCheck('sign-in')}> Sign in </h1>
 
-        <h1 className={check === 'sign-up' ? 'active' : ''} onClick={() => setCheck('sign-up')}> Sign up </h1>
+        <h1 className={check === 'sign-up' ? 'active' : 'blank'} onClick={() => setCheck('sign-up')}> Sign up </h1>
         
       </div>
 
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <label>Email:
+        <label >Email:
           <input type='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
         </label>
 
-        <label>Password:
+        <label >Password:
           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
         </label>
 

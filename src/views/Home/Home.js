@@ -39,11 +39,8 @@ export default function Home() {
     }
   };
 
-
-
-
   return (
-    <div> Home
+    <div>
       {error && <p>{error}</p>}
       <div>
         <label className='bio'> Background:
