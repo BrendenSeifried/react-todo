@@ -31,7 +31,8 @@ export default function Home() {
   const setToTrue = async (data) => {
     try {
       await changeToDo({ ...data, complete: true });
-  
+      const checkbox = await fetchToDo();
+      setToDo(checkbox);
     } catch (e) {
       setError('tisk tisk you broke it');
     }
@@ -50,7 +51,7 @@ export default function Home() {
       </div>
       {todo.map ((data) =>(
         <div key={data.id}>
-          <h1 type='checkbox' className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
+          <h1 className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
         </div>
       ))}
     </div>

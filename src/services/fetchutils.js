@@ -1,10 +1,10 @@
 import { checkError, client } from './client';
 
 export async function fetchToDo() {
-  const resp = await client.from('todos').select('*');
+  const resp = await client.from('todos').select('*').order('id', { ascending: true });
   return checkError(resp);
 }
-
+'id', { ascending: false };
 
 export async function createTodo(item) {
   const resp = await client.from('todos').insert(item).single();
@@ -16,6 +16,7 @@ export async function changeToDo(done){
   const resp = await client.from('todos').update(done).match({ id: done.id }).single();
   return checkError(resp);
 }
+
 
 
 
