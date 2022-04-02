@@ -18,10 +18,6 @@ export async function changeToDo(done){
 }
 
 
-export async function deleteToDo(id) {
-  const resp = await client.from('todos').delete().match({ id }).single();
-  return checkError(resp);
-}
 
 ////////Sign in and sign out functions for users///////////
 

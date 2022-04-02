@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { changeToDo, createTodo, deleteToDo, fetchToDo } from '../../services/fetchutils';
+import { changeToDo, createTodo, fetchToDo } from '../../services/fetchutils';
 import './Home.css';
 
 
@@ -30,17 +30,14 @@ export default function Home() {
 
   const setToTrue = async (data) => {
     try {
-      const caugh = await changeToDo({ ...data, complete: true });
+      await changeToDo({ ...data, complete: true });
   
     } catch (e) {
       setError('tisk tisk you broke it');
     }
   };
 
-  // const takeAway = async () => {
-  //   await deleteToDo(id); 
-  //   history.push(`/`);
-  // };
+
 
   return (
     <div>
@@ -53,7 +50,7 @@ export default function Home() {
       </div>
       {todo.map ((data) =>(
         <div key={data.id}>
-          <h1 className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
+          <h1 type='checkbox' className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
         </div>
       ))}
     </div>
