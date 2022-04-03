@@ -4,7 +4,7 @@ export async function fetchToDo() {
   const resp = await client.from('todos').select('*').order('id', { ascending: true });
   return checkError(resp);
 }
-'id', { ascending: false };
+
 
 export async function createTodo(item) {
   const resp = await client.from('todos').insert(item).single();
