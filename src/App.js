@@ -19,7 +19,7 @@ function App() {
           </Route>
 
           <Route exact path = '/auth'>
-            <Auth setCurrentUser={setCurrentUser}/>
+            {!currentUser ? <Auth setCurrentUser={setCurrentUser}/> : <Redirect to='/'/>} 
           </Route>
         </Switch>
       </div>
