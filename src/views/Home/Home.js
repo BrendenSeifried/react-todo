@@ -22,6 +22,7 @@ export default function Home() {
     try {
       const data = await createTodo({ description });
       setToDo((prevState) => [...prevState, data]);
+      setDescription('');
       
     } catch (e) {
       setError('you broke it');
