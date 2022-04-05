@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { changeToDo, createTodo, fetchToDo } from '../../services/fetchutils';
+import { changeToDo, createTodo, deleteToDo, fetchToDo } from '../../services/fetchutils';
 import './Home.css';
 
 
@@ -7,7 +7,7 @@ export default function Home() {
   const [todo, setToDo] = useState([]);
   const [error, setError] = useState('');
   const [description, setDescription] = useState('');
- 
+
 
   useEffect(()=> {
     const grabToDo = async () => {
@@ -39,6 +39,11 @@ export default function Home() {
   };
 
 
+  const removeToDo = async (id) => {
+    await deleteToDo(id); 
+    const reRender = await fetchToDo();
+    setToDo(reRender);
+  };
 
   return (
     <div>
@@ -52,6 +57,7 @@ export default function Home() {
       {todo.map ((data) =>(
         <div key={data.id}>
           <h1 className={data.complete ? 'completed' : ''} onClick={()=>setToTrue(data)}>{data.description}</h1>
+          <button onClick={()=>removeToDo(data.id)}>Delete</button>
         </div>
       ))}
     </div>
